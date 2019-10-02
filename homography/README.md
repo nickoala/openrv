@@ -68,6 +68,7 @@ left as negative, zero along the middle.
 We go `(forward, sideway)`. For example:
 - `(1, 2)` means 1 unit forward, 2 units right
 - `(2, -3)` means 2 units forward, 3 units left
+- `(3, 0)` means 3 units forward, along the middle
 
 This is the floor coordinate system.
 
