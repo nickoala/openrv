@@ -6,12 +6,9 @@ but lacks some algorithms I need. Out comes this project, in which I implement a
 few missing pieces myself. I hope it could save time for someone who tries to do
 the same.
 
-I won't give all the backgrounds. Please click on the links to review them.
-Using vision algorithms effectively does require knowing enough backgrounds.
-
 ## Prerequisites
 
-Vectors and matrices are mainstay in these situations. Finding no satisfactory
+Vector and matrix are mainstay in these situations. Finding no satisfactory
 alternatives, I have again implemented my own.
 
 #### Vector Operations on MicroPython
@@ -73,7 +70,7 @@ print(vec.distance.euclidean(ha[:-1], hb[:-1]))
 0 or 1. Pixels having a non-zero brightness are treated as 1. This speeds up
 calculation.
 
-More: [test_moments.py](blob/master/test/test_moments.py)
+More: [test_moments.py](test/test_moments.py)
 
 ## Planar homography
 
@@ -94,7 +91,7 @@ relative to the floor cannot change.
 
 **[First, you have to calibrate for a homography matrix, which is a very long
 story. I have devoted an entire directory to discuss the process. Take a look
-there.](tree/master/homography)**
+there.](homography)**
 
 Once you have the matrix, the rest is easy.
 
@@ -115,7 +112,7 @@ image_points = [[83, 109],
 print(p.project(image_points))
 ```
 
-More: [test_planar.py](blob/master/test/test_planar.py)
+More: [test_planar.py](test/test_planar.py)
 
 ## Quickshift++
 
@@ -166,5 +163,5 @@ theoretical understanding cannot be avoided.
 
 In short, use `k` and `beta` to tune the clustering.
 
-More: [test_quickshiftpp.py](blob/master/test/test_quickshiftpp.py) and
-      [test_quickshiftpp_colors.py](blob/master/test/test_quickshiftpp_colors.py)
+More: [test_quickshiftpp.py](test/test_quickshiftpp.py) and
+      [test_quickshiftpp_colors.py](test/test_quickshiftpp_colors.py)
