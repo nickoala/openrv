@@ -55,14 +55,15 @@ Our aim is, given a point on the image, to infer a position on the floor.
 However, points are represented differently on the two planes.
 
 On the image, `(0, 0)` is at top-left. `X` increases going right, `Y` increases
-going down. `X` and `Y` are never negative. Points are written X-first, i.e. `(X, Y)`.
+going down. Points are written as `(X, Y)`.
 
 The floor coordinate system is up to you to invent. Since this is my tutorial,
 you get to follow mine. I think of a position on the floor as:
 
 1. how far ahead it is in front of the robot.
 
-2. how far it is to the left or right of the robot.
+2. how far it is to the left or right of the robot. I treat right as positive,
+left as negative, zero along the middle.
 
 We go `(forward, sideway)`. For example:
 - `(1, 2)` means 1 unit forward, 2 units right
@@ -97,6 +98,8 @@ Pick some points and note down their image coordinates and floor coordinates.
   only count the number of *units* in forward and sideway direction. Conversion
   to real-world distance will be done later.
 
+For example:
+
 | Image coordinates `(X,Y)` | Resolution 320 x 240  | Floor coordinates `(forward,sideway)` |
 | ------------------------: | --------------------- | :------------------------------------ |
 |           119, 201        | ![](align_grid_1.png) |      1, -1                            |
@@ -123,8 +126,8 @@ saved to a file. [For example:](point_correspondence_2.example)
 
 ## Now, we need a Linux machine ...
 
-... because we are going to run a Python script requiring numpy. The script
-[fit_homograph.py](fit_homograph.py) accepts the aforementioned file and gives
+... because we are going to run a Python 3 script requiring numpy. The script
+[fit_homography.py](fit_homography.py) accepts the aforementioned file and gives
 you the best fitted *homography matirx*.
 
 ```
