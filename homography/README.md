@@ -34,8 +34,7 @@ For simplicity, I refer to it as "the grid" from here on.
 1. Position the OpenMV camera 10cm above the grid, in a way that grid lines
 should appear to the camera straight and square.
 
-2. Load the program [lens_corr.py](../../blob/master/lens_corr.py) onto OpenMV
-camera.
+2. Load the program [lens_corr.py](lens_corr.py) onto OpenMV camera.
 
 3. Adjust the parameter of
 [`lens_corr()`](http://docs.openmv.io/library/omv.image.html#image.image.lens_corr)
@@ -77,8 +76,8 @@ This is the floor coordinate system.
 1. Mount the OpenMV camera onto the robot. The camera's height and orientation
 relative to the floor must be fixed throughout.
 
-2. Load the program [align_grid.py](../../blob/master/align_grid.py) to OpenMV
-camera. Put the grid in view.
+2. Load the program [align_grid.py](align_grid.py) to OpenMV camera. Put the
+grid in view.
 
 3. Align the grid with the crosshair drawn on the image.
 
@@ -111,7 +110,7 @@ Pick some points and note down their image coordinates and floor coordinates.
 ## Save point correspondences to a file
 
 Each pair of point correspondence is put on a line, separated by spaces, and
-saved to a file. [For example:](../../blob/master/point_correspondence.example)
+saved to a file. [For example:](point_correspondence_2.example)
 
 ```
 119 201  1 -1
@@ -125,8 +124,8 @@ saved to a file. [For example:](../../blob/master/point_correspondence.example)
 ## Now, we need a Linux machine ...
 
 ... because we are going to run a Python script requiring numpy. The script
-[fit_homograph.py](../../blob/master/fit_homograph.py) accepts the
-aforementioned file and gives you the best fitted *homography matirx*.
+[fit_homograph.py](fit_homograph.py) accepts the aforementioned file and gives
+you the best fitted *homography matirx*.
 
 ```
 $ pip install numpy click
