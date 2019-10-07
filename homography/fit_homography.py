@@ -71,7 +71,7 @@ def homogeneous_transform(m, p):
     q = np.dot(m, p+[1])
     return q[:-1] / q[-1]
 
-def normalize_points(points):
+def normalize_batch(points):
     centroid, avg_distance = centroid_and_average_distance(points)
     normalizer, denormalizer = make_normalizer_pair(centroid, avg_distance)
     normalized = [homogeneous_transform(normalizer, p) for p in points]
@@ -88,8 +88,8 @@ def main(file, unit, normalize):
     dest = scale_batch(dest, unit)
 
     if normalize:
-        src_in, normalizer, _ = normalize_points(src)
-        dest_in, _, denormalizer = normalize_points(dest)
+        src_in, normalizer, _ = normalize_batch(src)
+        dest_in, _, denormalizer = normalize_batch(dest)
     else:
         src_in, dest_in = src, dest
 

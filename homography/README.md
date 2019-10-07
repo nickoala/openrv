@@ -1,4 +1,4 @@
-# How to obtain homography matrix?
+# How to obtain homography matrix between two planes?
 
 ## Decide on your application's resolution
 
@@ -132,8 +132,8 @@ saved to a file. [For example:](point_correspondence_2.example)
 you the best fitted *homography matirx*.
 
 ```
-$ pip install numpy click
-$ python fit_homograph.py point_correspondence_2.example -unit 30
+$ pip3 install numpy click
+$ python3 fit_homograph.py point_correspondence_2.example -unit 30
 
 [[ 1.41954610e-01  3.59458059e+00 -8.54247091e+02]
  [-2.67562042e+00  1.12136612e-02  4.30745532e+02]
@@ -180,18 +180,22 @@ p = Planar(H)
 print(p.project(image_points))
 ```
 
-The results are in real-world units, because conversion is included in the
-matrix.
+Note that results are in real-world units.
 
-When we express a position on the floor, it may be more intuitive to express it
-relative to the robot's toe, or to some place close to the robot's body.
-However, depending on how the camera is mounted, the floor position `(0, 0)` may
-be some distance ahead. If the floor origin is, say, 200 mm in front of the
-robot's toe, we can pass in an `offset` as:
+When we express a position on the floor, it may be more convenient to express it
+relative to the robot's toe, or to some body part with physical significance (so
+measurement and verification can be done easily). However, due to the way we
+position the floor coordinate system, the floor position `(0, 0)` (i.e. the
+floor origin) is usually some distance ahead of the robot in some no-man's land.
+It would be useful to offset the floor origin to some place we like.
+
+If originally the floor origin is 200 mm in front of the robot's toe, we can
+pass in an `offset` as:
 
 ```python
 p = Planar(H, offset=[200, 0])
 ```
 
-to add such a distance to all results. This way, the floor positions returned
-will be relative to the robot's toe, which hopefully are more intuitive.
+to add such a distance to all results. In effect, we have offset the floor
+origin to the robot's toe, which hopefully makes measurement more convenient and
+intuitive.
