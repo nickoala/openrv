@@ -37,6 +37,10 @@ contain:
     └── __init__.py
 ```
 
+**In addition, you need some theoretical backgrounds to use vision algorithms
+effectively. This page does not give you those backgrounds. Study them
+yourself.**
+
 ## Hu moments
 
 [Hu moments](https://docs.opencv.org/2.4/modules/imgproc/doc/structural_analysis_and_shape_descriptors.html#humoments)
