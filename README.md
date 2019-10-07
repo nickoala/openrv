@@ -1,15 +1,15 @@
 # OpenRV - Robot Vision routines for OpenMV
 
-[OpenMV](https://openmv.io) is a small camera board which lets you do machine
-vision easily. I use it to direct my robot. The software library is adequate,
-but lacks some algorithms I need. Out comes this project, in which I implement a
-few missing pieces myself. I hope it could save time for someone who tries to do
-the same.
+[OpenMV](https://openmv.io) is a small camera board for machine vision. I use it
+to direct my robot. [The software
+library](http://docs.openmv.io/library/index.html) is adequate, but lacks some
+algorithms I need. Out comes this project, in which I implement a few missing
+pieces myself. I hope it could save time for someone who tries to do the same.
 
 ## Prerequisites
 
-Vector and matrix are mainstay in these situations. Finding no satisfactory
-alternatives, I have again implemented my own.
+Vector and matrix are mainstay in machine vision. Finding no satisfactory
+libraries, I have again implemented my own.
 
 #### Vector Operations on MicroPython
 
@@ -66,11 +66,11 @@ hb = rv.moments.hu(b)
 print(vec.distance.euclidean(ha[:-1], hb[:-1]))
 ```
 
-**Remark:** Although accepting gray-level images, it treats pixels as either
-0 or 1. Pixels having a non-zero brightness are treated as 1. This speeds up
-calculation.
+**Remark:** Although accepting gray-level images, this implementation treats
+pixels as either 0 or 1. Pixels having a non-zero brightness are treated as 1.
+This speeds up calculation.
 
-More: [test_moments.py](test/test_moments.py)
+**More:** [test_moments.py](test/test_moments.py)
 
 ## Planar homography
 
@@ -98,10 +98,9 @@ Once you have the matrix, the rest is easy.
 ```python
 import rv.planar
 
-H = [
-    [ 3.14916496e+01, -9.79038178e+02,  1.03951636e+05],
-    [ 7.57939015e+02, -3.31912533e+01, -5.86807545e+04],
-    [ 2.06572544e-01,  2.03579263e+00,  1.00000000e+00]]
+H = [[ 3.14916496e+01, -9.79038178e+02,  1.03951636e+05],
+     [ 7.57939015e+02, -3.31912533e+01, -5.86807545e+04],
+     [ 2.06572544e-01,  2.03579263e+00,  1.00000000e+00]]
 
 p = rv.planar.Planar(H)
 
@@ -112,15 +111,17 @@ image_points = [[83, 109],
 print(p.project(image_points))
 ```
 
-More: [test_planar.py](test/test_planar.py)
+**More:** [test_planar.py](test/test_planar.py)
 
 ## Quickshift++
 
-[The latest member of the Meanshift family of clustering
-algorithms.](https://github.com/google/quickshift) It accepts a bunch of points
-and group them. I use it to "discover" the colors of disks on the floor, before
-using colors to pick out the disks. This saves me from hard-coding the colors
-beforehand, and makes the robot adaptive.
+[The latest member](https://github.com/google/quickshift) [of the
+Meanshift](http://www.chioka.in/meanshift-algorithm-for-the-rest-of-us-python/)
+[family of clustering
+algorithms](https://github.com/Nick-Ol/MedoidShift-and-QuickShift), Quickshift++
+accepts a bunch of points and group them. I use it to "discover" the colors of
+disks on the floor, before using colors to pick out the disks. This saves me
+from hard-coding the colors beforehand, and makes the robot adaptive.
 
 It is not optimized to handle a large number of points. OpenMV's limited memory
 precludes handling a lot of points anyway. Don't expect to use it to segment an
@@ -153,9 +154,8 @@ print(rv.quickshiftpp.cluster(points,
                               beta=0.2))
 ```
 
-The parameter `k`, as in *k*-th nearest neighbor, determines how density is
-estimated. It uses *distance to the k-th nearest neighbor* to estimate density
-around each point.
+The parameter `k` determines how density is estimated. It uses *distance to the
+k-th nearest neighbor* to estimate density around each point.
 
 The parameter `beta` determines how much density is allowed to vary within
 cluster cores. Here is not the place to explain what "cluster core" means. Some
@@ -163,5 +163,5 @@ theoretical understanding cannot be avoided.
 
 In short, use `k` and `beta` to tune the clustering.
 
-More: [test_quickshiftpp.py](test/test_quickshiftpp.py) and
-      [test_quickshiftpp_colors.py](test/test_quickshiftpp_colors.py)
+**More:** [test_quickshiftpp.py](test/test_quickshiftpp.py) and
+          [test_quickshiftpp_colors.py](test/test_quickshiftpp_colors.py)
