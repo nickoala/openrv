@@ -6,6 +6,8 @@ library](http://docs.openmv.io/library/index.html) is adequate, but lacks some
 algorithms I need. Out comes this project, in which I implement a few missing
 pieces myself. I hope it could save time for someone who tries to do the same.
 
+**Everything is tested on OpenMV Cam H7**
+
 ## Prerequisites
 
 Vector and matrix are mainstay in machine vision. Finding no satisfactory
