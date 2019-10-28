@@ -186,8 +186,9 @@ When we express a position on the floor, it may be more convenient to express it
 relative to the robot's toe, or to some body part with physical significance (so
 measurement and verification can be done easily). However, due to the way we
 position the floor coordinate system, the floor position `(0, 0)` (i.e. the
-floor origin) is usually some distance ahead of the robot in some no-man's land.
-It would be useful to offset the floor origin to some place we like.
+floor origin, or where the crosshair meets) is usually some distance ahead of
+the robot in some no-man's land. It would be useful to offset the floor origin
+to some place we like.
 
 If originally the floor origin is 200 mm in front of the robot's toe, we can
 pass in an `offset` as:
